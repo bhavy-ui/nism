@@ -1,0 +1,60 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>NISM Series VIII Mock Exam</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;background:#0f1724;color:#fff;margin:0;padding:20px}
+.container{max-width:800px;margin:auto;background:#18233b;padding:20px;border-radius:10px;box-shadow:0 0 10px #000}
+h1{text-align:center;color:#00bcd4}
+button{background:#00bcd4;color:#fff;border:none;padding:10px 20px;border-radius:5px;cursor:pointer;margin-top:10px}
+.option{margin:8px 0;display:block;padding:8px;border:1px solid #333;border-radius:5px;cursor:pointer}
+.option:hover{background:#223}
+#result{margin-top:20px;padding:15px;background:#061018;border-radius:8px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>NISM Series VIII – Equity Derivatives Mock Exam</h1>
+<div id="exam"></div>
+<button onclick="submitExam()">Submit Exam</button>
+<div id="result"></div>
+</div>
+<script>
+const questions=[
+{q:"Vega measures the sensitivity of an option price to changes in:",opts:["Price of underlying","Interest rates","Market volatility","Time to expiry"],a:2},
+{q:"Which of these is NOT part of Indian equity derivatives market?",opts:["Individual stock options","Individual stock futures","Options on equity indices","Interest rate futures"],a:3},
+{q:"Buying a put option on a stock you own as protection is called:",opts:["Calendar spread","Aggressive put","Protective put","Straddle"],a:2},
+{q:"A clearing member must deposit per additional trading member:",opts:["Rs.5 lakhs","Rs.10 lakhs","Rs.15 lakhs","Rs.20 lakhs"],a:1},
+{q:"A beta greater than 1 implies:",opts:["Stock moves twice the index","Stock moves less than index","Stock more volatile than index","Moves same as index"],a:2},
+{q:"What happens to a Day Order if not executed during the day?",opts:["Executed next day","Cancelled automatically","Goes to auction","Executed after-hours"],a:1},
+{q:"Intrinsic value of an out-of-money option is:",opts:["Negative","Zero","Positive","Depends"],a:1},
+{q:"Suspicious transaction reporting is required under:",opts:["SEBI Insider Trading","FATCA","AML/CFT Regulations","FEMA"],a:2},
+{q:"An increase in interest rates leads to:",opts:["Higher borrowing costs","Lower inflation","Higher stock market","More spending"],a:0},
+{q:"Securities Transaction Tax (STT) applies on:",opts:["Unlisted shares","Recognised stock exchange trades","Only mutual funds","Foreign exchanges"],a:1}
+];
+const examDiv=document.getElementById('exam');
+let html='';
+questions.forEach((q,i)=>{
+ html+=<div><p><b>Q${i+1}. ${q.q}</b></p>;
+ q.opts.forEach((o,j)=>{
+ html+=<label class='option'><input type='radio' name='q${i}' value='${j}'> ${o}</label>;
+ });
+ html+='</div><hr>';
+});
+examDiv.innerHTML=html;
+function submitExam(){
+ let score=0;
+ questions.forEach((q,i)=>{
+  const ans=document.querySelector(input[name=q${i}]:checked);
+  if(ans && parseInt(ans.value)===q.a){score++;}
+ });
+ const perc=(score/questions.length*100).toFixed(1);
+ let pass=perc>=60?"PASS ✅":"FAIL ❌";
+ document.getElementById('result').innerHTML=<h2>Your Score: ${score}/${questions.length} (${perc}%) - ${pass}</h2>;
+}
+</script>
+</body>
+</html>
